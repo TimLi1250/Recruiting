@@ -44,11 +44,11 @@ class BinaryTreeBFS:
                     print_list.append(None)
         print(print_list)
 
-
-# Now for a DFS, we will usually just use recursion
-# For example, here is a problem where we just want to check that each node in the tree
-# is balanced i.e. the hight of the left subtree and the right subtree differ by at most 1
-
+'''
+Now for a DFS, we will usually just use recursion
+For example, here is a problem where we just want to check that each node in the tree
+is balanced i.e. the hight of the left subtree and the right subtree differ by at most 1
+'''
 class balancedBinaryTree:
     def isBalanced(self, root) -> bool:
 
@@ -70,17 +70,17 @@ class balancedBinaryTree:
         # We finally just need to make sure to call this function on the root node
         dfs(root)
         return self.result
+'''
+For a DFS, if we are doing it recursively, it is important for us to decide where the recursion is happening.
+For example, if the current node depends on the children, you would put the "checking statements" after the recursion.
+However, if the current node rather depends on what you had encountered already in the search (i.e. the parents),
+you would want to put the "checking" statements before the recursion.
 
-# For a DFS, if we are doing it recursively, it is important for us to decide where the recursion is happening.
-# For example, if the current node depends on the children, you would put the "checking statements" after the recursion.
-# However, if the current node rather depends on what you had encountered already in the search (i.e. the parents),
-# you would want to put the "checking" statements before the recursion.
-
-# In the example above, we are checking conditions after the recursion.
-# I have attached an example below where we are checking conditions before the recursion.
-# The following problem is to find the number of "good" nodes in a binary tree.
-# A "good" node is a node where the path to that node has no nodes with a value greater than to the value of that node.
-
+In the example above, we are checking conditions after the recursion.
+I have attached an example below where we are checking conditions before the recursion.
+The following problem is to find the number of "good" nodes in a binary tree.
+A "good" node is a node where the path to that node has no nodes with a value greater than to the value of that node.
+'''
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         self.result = 0

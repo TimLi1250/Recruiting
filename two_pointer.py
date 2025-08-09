@@ -67,6 +67,16 @@ Find two lines which, together with the x-axis, form a container that holds the 
 I think the hard part to recognize about this question is that we just need to save the maximum area we can find
 instead of trying to update the maximum area every time we find a new pair of lines.
 
+So the algorithm is as follows:
+1. Initialize two pointers, one at the start and one at the end of the array.
+2. Calculate the area formed by the lines at these two pointers.
+3. Update the maximum area if the current area is larger.
+4. Move the pointer pointing to the shorter line inward, as this will potentially increase the area
+5. Repeat steps 2-4 until the two pointers meet.
+
+This algorithm works because we KNOW for sure that moving the pointer pointing to the shorter line inward will
+not decrease the area, and it may increase it. The pointer pointing to the taller line can only decrease the area.
+
 '''
 def largest_container(arr):
     start, end = 0, len(arr) - 1

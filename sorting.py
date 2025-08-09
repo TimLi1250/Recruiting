@@ -175,6 +175,13 @@ class SortingAlgorithms:
                 return SortingAlgorithms.kth_smallest(arr, low, index - 1, k)
             # If the index is less than k-1, we need to search in the right part of the array
             return SortingAlgorithms.kth_smallest(arr, index + 1, high, k - index + low - 1)
+    '''
+    Now let's implement Counting Sort. This is a non-comparison based sorting algorithm that works by counting the occurrences of each element in the array.
+    It is only suitable for sorting integers or objects with a limited range of values.
+    '''
+    @staticmethod
+    def counting_sort(arr):
+        max_val = max(arr)
 
 # Example usage of the sorting algorithms
 data = [-2, 45, 0, 11, -9, 8, 23, 74, 18, -90, -67, 55, 34]

@@ -99,3 +99,53 @@ class Solution:
             return maxi
         dfs(root, root.val)
         return self.result
+
+'''
+After reading the book, the order of the methods depends on what kind of traversals you are doing.
+Preorder traversal: 1. process node 2. dfs(node.left) 3. dfs(node.right)
+Inorder traversal: 1. dfs(node.left), 2. process(node), 3. dfs(node.right)
+Postorder traversal: 1. dfs(node.left) 2. dfs(node.right) 3. process(node)
+
+Furthermore, if we want to do a question iteratively instead of recursively, we can implement a stack
+'''
+
+'''
+Here are some common NeetCode questions and their approach to each one.
+
+1. Widest Binary Tree Level: return the width of the widest level in a binary tree where the width is defined as the distance
+between its leftmost and rightmost nodes.
+Here we can just assign each node a index and then do a level-order traversal (BFS)
+
+2. Binary Search Tree Validation: We just want to verify whether or not a binary search tree is valid or not
+Here we can do a DFS, but while we are running the DFS, we need to pass in lower and upper bounds e.g. valid(node, left, right)
+
+3. Lowest Common Ancestor: return the lowest common ancestor of two nodes (p, q) in a binary tree
+There are two variations to this question:
+a) if the binary tree is actually a binary search tree, this question becomes slightly easier.
+In that case, we just need to check a couple of cases. Basically at any root node, it could be the ancestor so we check the following cases
+* p < root and q < root -> recurse in root.left
+* p > root and q > root -> recurse in root.right
+* p < root and q > root -> found common ancestor
+
+b)
+Now the second variation to this question is for any binary tree.
+Let's assume a node 3 is the LCA, then where can p and q be?
+* one at 3's left subtree and one at 3's right subtree
+* one at node 3 and one at 3's left subtree
+* one at node 3 and one at 3's right subtree
+
+If at least two of these three boolean values are True, then the current node is the lowest common ancestor.
+
+4. Building a binary tree from Preorder and Inorder traversals
+Here we want to first create the current node pointed at preorder_index, increment our preorder_index so it points to the next
+node that needs to be created and finally
+Make a recusrive call to build the current node's left and right subtrees.
+* pass in the subarray [0, inorder_index - 1] for left subtree
+* pass in the subarray [inorder_index + 1, n-1] for right subtree
+
+5. Maximum Sum of a Continuous Path in a Binary Tree
+The first thing we need to understand is that all paths have a root.
+i.e. the maximum path sum from node 5 is 5 + (max path sum from left) + (max path sum from right)
+However, when we return the maximum sum, the result has to be a continuous path so we return
+node.val + max(left_sum, right_sum)
+'''

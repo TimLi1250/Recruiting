@@ -178,10 +178,26 @@ class SortingAlgorithms:
     '''
     Now let's implement Counting Sort. This is a non-comparison based sorting algorithm that works by counting the occurrences of each element in the array.
     It is only suitable for sorting integers or objects with a limited range of values.
+
+    1. We first want to count the occurences i.e. create a counts array where each of its indexes represents an element from the original array
+    For example if we have the array nums = [2, 1, 0, 0, 2, 4, 2] -> we would create an array [2, 1, 3, 0, 1] to represent 2 0s, 1 1, 3 2s, 0 3s and 1 4.
+    2. We can then build our sorted array by iterating through each index of the counts array and add that index (i) to the sorted array as many times as
+    its value indicates
     '''
     @staticmethod
     def counting_sort(arr):
-        max_val = max(arr)
+        if not arr:
+            return []
+        result = []
+        counts = [0] * (max(arr)+1)
+        # build the counts array
+        for num in arr:
+            counts[num] += 1
+        # add element i into the resulting array counts[i] amount of times
+        for i, count in enumerate(counts):
+            result.extend([i] * count)
+        return result
+
 
 # Example usage of the sorting algorithms
 data = [-2, 45, 0, 11, -9, 8, 23, 74, 18, -90, -67, 55, 34]
@@ -197,3 +213,5 @@ quick_sorted_data = SortingAlgorithms.quick_sort(data, 0, len(data) - 1)
 print("Quick Sorted Data:", quick_sorted_data)
 kth_smallest_element = SortingAlgorithms.kth_smallest(data, 0, len(data) - 1, 5)
 print("5th Smallest Element:", kth_smallest_element)
+counting_sorted_data = SortingAlgorithms.counting_sort(data)
+print("Counting Sorted Data:", counting_sorted_data)

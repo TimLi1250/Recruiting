@@ -70,6 +70,7 @@ We can start with the example: Graph Deep Copy
 def graph_deep_copy(node):
     if not node:
         return None
+    clone_map = {}
 
     def dfs(node, clone_map):
         # check if the node had already been cloned in the past
@@ -87,7 +88,7 @@ def graph_deep_copy(node):
             cloned_node.neighbors.append(cloned_neighbor)
         return cloned_node
 
-    return dfs(node)
+    return dfs(node, clone_map)
 
 '''
 
@@ -119,14 +120,16 @@ def count_islands(matrix) -> int:
     return num_islands
 
 def dfs(r, c, matrix):
+    # we need to make sure to check bounds first
+    if r < 0 or r >= len(matrix) or c < 0 or c >= len(matrix[0]):
+        return
     # once we visit the cell, we want to mark it as visited
     matrix[r][c] = -1
     # there are four directions to go from a cell, we want to run a DFS on all 4 directions
     directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
     for d in directions:
         next_r, next_c = r + d[0], c + d[1]
-        if (matrix[r][c] == 1):
-            dfs(next_r, next_c, matrix)
+        dfs(next_r, next_c, matrix)
 
 
 '''

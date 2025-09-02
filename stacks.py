@@ -36,9 +36,40 @@ We can just solve this question by adding everything to the stack, and then popp
 
 '''
 
-
 '''
 Now let's look at what happens if we want to solve this: 18 - (7 + ( 2 - 4 ) ).
 Every time we encounter a "(" we know we need to evaluate whatever is in between that "(" and ")" first. Therefore, we can push our result onto the stack.
-To compute the entire expression, we can just pop the stack. 
+To compute the entire expression, we can just pop the stack.
 '''
+
+'''
+We can quickly take a look at implementing a queue (FIFO) using two stacks.
+
+We can see that the most important thing here is to realize that because push and pop/peek are two completely different operations, we
+should use one stack to complete each operation.
+We use stack1 as a regular stack, whenever we need to push, we just append.
+We use stack2 as a "reverse" stack, every time we want to pop/peek, we add everything from stack1 which reverses the order.
+'''
+
+class myQueue:
+    def __init__(self):
+        self.stack1 = []
+        self.stack2 = []
+
+    def push(self, x: int) -> None:
+        self.stack1.append(x)
+
+    def pop(self) -> int:
+        if not self.stack2:
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
+        return self.stack2.pop()
+
+    def peek(self) -> int:
+        if not self.stack2:
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
+        return self.stack2[-1]
+
+    def empty(self) -> bool:
+        return max(len(self.stack1), len(self.stack2)) == 0

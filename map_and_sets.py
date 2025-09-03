@@ -50,6 +50,16 @@ def pair_sum(arr, target):
             hashmap[arr[num]] = num
     return []
 
+
+# For a set, we can use it like so:
+
+myset = set()
+myset.add("apple")
+myset.add("banana")
+myset.remove("apple")
+print("apple" in myset)
+
+
 '''
 Now let's look at the question, Verify a Sudoku Board. To check if a Sudoku board is valid, we can use a set to keep track of the numbers we have seen in each row, column, and 3x3 subgrid.
 We just need to create three groups of sets: one for rows, one for columns, and one for subgrids.

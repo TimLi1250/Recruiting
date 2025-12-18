@@ -1,3 +1,5 @@
+import List
+
 '''
 Let's take a look at graphs, a graph will consist of nodes and edges
 
@@ -29,6 +31,29 @@ def dfs(node, visited):
     for neighbor in node.neighbors:
         if neighbor not in visited:
             dfs(neighbor, visited)
+
+# Here is an example of a dfs implementation:
+heights = List[List[int]]
+
+def dfs(r, c, visit, prevHeight):
+    # checks to see when we stop our dfs
+    if r < 0 or c < 0 or r >= len(heights) or c >= len(heights[0]):
+        return
+    # already visited
+    if (r, c) in visit:
+        return
+    # height condition
+    if heights[r][c] < prevHeight:
+        return
+
+    # mark as visited
+    visit.add((r, c))
+    # and then we run our dfs on our neighbors
+    curr_height = heights[r][c]
+    dfs(r-1, c, visit, curr_height)
+    dfs(r+1, c, visit, curr_height)
+    dfs(r, c-1, visit, curr_height)
+    dfs(r, c+1, visit, curr_height)
 
 from collections import deque
 
@@ -246,6 +271,17 @@ Here we can use Kahn's algorithm:
 * pop the course from the queue and then for each course that has course 0 as a prerequisite, reduce their in-degree by 1
 * then add the new courses who have an in-degree of 0 to the queue
 '''
+
+# Set it up like this:
+# These are examples
+numCourses = 10
+prerequisites = [[1, 0], [2, 1], [3, 2], [5, 0], [6, 5], [7, 6], [8, 7], [9, 8]]
+
+indegree = [0] * numCourses
+adj = [[] for i in range(numCourses)]
+for src, dst in prerequisites:
+    indegree[dst] += 1
+    adj[src].append(dst)
 
 '''
 Let's take a look at Dijkstra's Algorithm

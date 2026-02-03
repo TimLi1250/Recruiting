@@ -22,6 +22,18 @@ my_map.pop('key', 'default_value')  # removes the key and returns its value, or 
 my_map.popitem()  # removes and returns the LAST INSERTED (key, value) pair
 my_map.clear()  # removes all items from the map
 
+# SORTING IN MAPS
+d = {"b": 2, "a": 3, "c": 1}
+
+by_key = dict(sorted(d.items(), key=lambda kv: kv[0]))
+# {'a': 3, 'b': 2, 'c': 1}
+# if we want to sort by descending order, we can just add reverse=True
+by_value = dict(sorted(d.items(), key=lambda kv: kv[1]))
+# {'c': 1, 'b': 2, 'a': 3}
+# same here
+
+
+
 
 # SPECIAL CASE where we want to intialize a map with a default value for all keys
 # In this case below, if 'key' is not present, it will be initialized with 0

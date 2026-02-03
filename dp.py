@@ -144,10 +144,10 @@ To approach this question, we should look at what happens at house i.
 * If we DON'T rob house i, we now have total_stolen(i-1)
 
 Therefore our dp solution is: dp[i] = max(dp[i-1], houses[i] + dp[i-2])
-Furthermore, we havee the base cases: dp[0] = houses[0] and dp[1] = max(houses[0], houses[1])
+Furthermore, we have the base cases: dp[0] = houses[0] and dp[1] = max(houses[0], houses[1])
 '''
 
-def neighborhood_buglary(houses) -> int:
+def neighborhood_burglary(houses) -> int:
     # base cases
     if not houses:
         return 0

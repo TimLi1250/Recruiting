@@ -44,8 +44,8 @@ def search_insert(nums, target):
     return left
 
 '''
-Now let's look at the question: Find the first and last occurences of a number in a sorted array.
-For example if we have an array [5, 7, 7, 8, 8, 8, 9, 10] and we want to find the first and last occurences of the number 8
+Now let's look at the question: Find the first and last occurrences of a number in a sorted array.
+For example if we have an array [5, 7, 7, 8, 8, 8, 9, 10] and we want to find the first and last occurrences of the number 8
 
 For our binary search, we can perform two separate searches:
 1. One to find the first occurrence of the target value.

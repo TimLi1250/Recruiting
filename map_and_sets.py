@@ -35,7 +35,7 @@ by_value = dict(sorted(d.items(), key=lambda kv: kv[1]))
 
 
 
-# SPECIAL CASE where we want to intialize a map with a default value for all keys
+# SPECIAL CASE where we want to initialize a map with a default value for all keys
 # In this case below, if 'key' is not present, it will be initialized with 0
 key = 'key'
 my_map.setdefault(key, 0)
